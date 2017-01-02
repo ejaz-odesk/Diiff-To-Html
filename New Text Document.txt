@@ -1,3 +1,0 @@
-user = ejaz-odesk
-email = ejaz.odesk@egenienext.com
-pass = admin123456
