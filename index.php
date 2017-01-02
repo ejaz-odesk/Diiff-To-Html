@@ -1,10 +1,11 @@
 <?php
 
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+ini_set('display_errors', 0); //PHP error and warning Setting
+ini_set('display_startup_errors', 0); //PHP error and warning Setting
 
 function differenceBetweenTwoArrays($prevArray, $currArray) {
-    $previousArray = json_decode($prevArray);
+    //Decoding JSON array to StdClass Object
+    $previousArray = json_decode($prevArray); 
     $currentArray = json_decode($currArray);
 
     $metaData = array();
@@ -20,16 +21,19 @@ function differenceBetweenTwoArrays($prevArray, $currArray) {
     $tableToReturn .= '<table  border="2" style="margin: 5% 36%;"><thead><tr>';
     $tableToReturn.='<th>_id</th>';
     $tableToReturn.='<th>someKey</th>';
-
+    
+    //Creating column header which is a superset of all keys
     foreach ($metaData as $key3 => $va3) {
         $tableToReturn.='<th>meta_' . $va3 . '</th>';
     }
     $tableToReturn.='</tr></thead><tbody>';
+    //Finding difference between given object Arrays
     foreach ($currentArray as $key4 => $val4) {
         $makeBold = '';
         if ($key4 == 1) {
             $makeBold = 'font-weight:bold;';
         }
+        //Highlight the Difference
         $tableToReturn.='<tr style=' . $makeBold . '>';
         $tableToReturn.='<td>' . $val4->_id . '</td>';
         $tableToReturn.='<td>' . $val4->someKey . '</td>';
@@ -46,6 +50,7 @@ function differenceBetweenTwoArrays($prevArray, $currArray) {
         $tableToReturn.='</tr>';
     }
     $tableToReturn.='</tbody></table>';
+    //Retunring Created Table's HTML
     return $tableToReturn;
 }
 
